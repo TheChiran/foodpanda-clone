@@ -14,7 +14,7 @@
     "react-dom": "^18.2.0"
   },
   "lint-staged": {
-    "**/src*.{js,jsx,json,ts,tsx}": [
+    "eslint \"**/*.{ts,tsx}\"": [
       "eslint . --fix",
       "prettier --write ."
     ]
@@ -25,6 +25,7 @@
     }
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.21.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
