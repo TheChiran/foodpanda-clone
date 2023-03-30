@@ -14,7 +14,7 @@
     "react-dom": "^18.2.0"
   },
   "lint-staged": {
-    "eslint \"**/*.{ts,tsx}\"": [
+    "eslint \"**/*.{ts,tsx,jsx,jsx,json}\"": [
       "eslint . --fix",
       "prettier --write ."
     ]
