@@ -1,0 +1,77 @@
+@import "./../../../style/variables";
+@import "./../../../style/common";
+
+.address-search {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+
+    .MuiFormControl-root {
+        height: 50px;
+        width: calc(100% - 90px);
+
+        .MuiInputBase-root {
+            height: 50px;
+
+            .MuiInputAdornment-root {
+                cursor: pointer;
+
+                .material-icons {
+                    color: $primary-color;
+                }
+            }
+        }
+
+        .MuiOutlinedInput-notchedOutline {
+            border-color: $default-border-color !important;
+        }
+
+        fieldset {
+            legend {
+                span {
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    .search-btn {
+        width: 80px;
+        height: 50px;
+
+        button {
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            background: $primary-color;
+            @include centered-content-style;
+        }
+
+        .material-icons {
+            color: #FFF;
+        }
+    }
+
+    .select-expedition {
+        display: flex;
+        align-items: center;
+        width: 220px;
+        column-gap: 8px;
+
+        button {
+            width: 100px;
+            display: flex;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            background: $primary-color;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    }
+}
