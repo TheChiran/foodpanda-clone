@@ -10,8 +10,16 @@
     "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.15",
+    "@radix-ui/react-dropdown-menu": "^2.0.4",
+    "@radix-ui/react-popover": "1.0.5",
+    "framer-motion": "^10.10.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
+    "sass": "^1.60.0"
   },
   "lint-staged": {
     "eslint \"**/*.{ts,tsx,jsx,jsx,json}\"": [
