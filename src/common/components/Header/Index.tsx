@@ -10,8 +10,6 @@ export default function Header() {
     const [overlayVisibility, setOverlayVisibility] = useState(false);
 
     const preventScroll = () => {
-        const body = document.body;
-
         window.scroll(0, 0);
     };
 
