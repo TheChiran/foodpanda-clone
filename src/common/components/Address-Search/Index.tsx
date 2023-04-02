@@ -1,10 +1,11 @@
 import "./styles.scss";
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
-import { useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 import openStreetService from "../../../services/open-street.service";
 import IOpenStreetData from "../../../types/openStreet.type";
 import { motion, AnimatePresence } from "framer-motion";
+import MapLocationSelectorModal from "../MapLocationSelectorModal/Index";
 
 interface AddressSearchProps {
     enableExpedition?: boolean;
@@ -17,6 +18,12 @@ export default function AddressSearch({ enableExpedition = false, onSearchClick 
 
     const [searchString, setSearchString] = useState("");
     const [searchResults, setSearchResults] = useState<IOpenStreetData[]>([]);
+    const [mapLocationDialogOpened, setMapLocationDialogOpened] = useState<boolean>(false);
+
+    const toggleMapLocationDialog = (event: MouseEvent) => {
+        event.preventDefault();
+        setMapLocationDialogOpened(!mapLocationDialogOpened);
+    };
 
     const canSearchLocation = () => {
         if ((!(searchInputRef.current as HTMLInputElement).value.trim()) || (searchInputRef.current as HTMLInputElement).value.length < 3) return false;
@@ -40,7 +47,7 @@ export default function AddressSearch({ enableExpedition = false, onSearchClick 
             try {
                 const response = await openStreetService.search({
                     q: (searchInputRef.current as HTMLInputElement).value, limit: 100,
-                    countrycodes: [""],
+                    countrycodes: ["bd"],
                     viewbox: [""],
                     bounded: 0,
                     addressdetails: 0,
@@ -69,13 +76,15 @@ export default function AddressSearch({ enableExpedition = false, onSearchClick 
                     )
                 }}
             />
-            {!enableExpedition ? <div className="search-btn" onClick={onSearchClick}>
+            {!enableExpedition ? <div className="search-btn" onClick={toggleMapLocationDialog}>
                 <button>
                     <div className="material-icons">
                         east
                     </div>
                 </button>
             </div> : null}
+
+            {mapLocationDialogOpened ? <MapLocationSelectorModal isOpen={mapLocationDialogOpened} onToggle={toggleMapLocationDialog} /> : null}
 
             {enableExpedition ?
                 <div className="select-expedition">
