@@ -9,7 +9,7 @@ import MapLocationSelectorModal from "../MapLocationSelectorModal/Index";
 
 interface AddressSearchProps {
     enableExpedition?: boolean;
-    onSearchClick?: () => {}
+    onSearchClick?: () => {};
 };
 
 export default function AddressSearch({ enableExpedition = false, onSearchClick }: AddressSearchProps) {
