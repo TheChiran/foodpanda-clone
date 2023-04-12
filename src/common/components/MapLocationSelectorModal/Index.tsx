@@ -4,11 +4,62 @@ import { MouseEventHandler, useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 // import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, useMap, Marker, Popup, useMapEvents } from 'react-leaflet'
-import { LatLngExpression, LatLngTuple } from 'leaflet';
+import { Control, ControlOptions, ControlPosition, LatLngExpression, LatLngTuple } from 'leaflet';
+import L from 'leaflet';
+import React from 'react';
 
 interface IProps {
     isOpen: boolean;
     onToggle: MouseEventHandler;
+};
+
+interface CustomButtonProps {
+    position?: string;
+    className?: string;
+}
+
+function RestaurantFinder({ position = 'topright', className = 'foodpanda-leaflet-position' }: CustomButtonProps) {
+    const map = useMap();
+
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        const container = L.DomUtil.create('div', 'restaurant-finder-container');
+        containerRef.current?.appendChild(container);
+
+        const button = L.DomUtil.create('button', 'leaflet-bar leaflet-control');
+        button.innerHTML = 'Find restaurants';
+        button.className = 'restaurant-finder-btn';
+
+        L.DomEvent.disableClickPropagation(button);
+        L.DomEvent.on(button, 'click', () => { console.log('clicked finder') });
+
+        container.appendChild(button);
+
+        const customControl = Control.extend({
+            options: {
+                position,
+                className: `leaflet-${position.split('')[0]} ${className}`
+            },
+            onAdd: function () {
+                return containerRef.current as HTMLElement;
+            }
+        });
+
+        const controlInstance = new customControl();
+        controlInstance.addTo(map);
+
+        if (controlInstance && controlInstance.getContainer()) {
+            controlInstance?.getContainer()!.parentElement!.classList.add('restaurant-finder');
+        }
+
+        return () => {
+            map.removeControl(controlInstance);
+            containerRef.current?.removeChild(container);
+        };
+    }, [className, map, position]);
+
+    return <div ref={containerRef} />;
 };
 
 function LocationMarker({ markerPosition }: any) {
@@ -23,14 +74,25 @@ function LocationMarker({ markerPosition }: any) {
 
     const map = useMapEvents({
         drag(event: any) {
+            const restaurantFinderSearchElem = document.getElementsByClassName('restaurant-finder-container') as HTMLCollectionOf<HTMLElement>;
+            if (restaurantFinderSearchElem) {
+                restaurantFinderSearchElem[0].style.opacity = '0';
+            }
+
             updateMarkerPosition(event);
         },
         moveend(event: any) {
+            const restaurantFinderSearchElem = document.getElementsByClassName('restaurant-finder-container') as HTMLCollectionOf<HTMLElement>;
+            if (restaurantFinderSearchElem) {
+                restaurantFinderSearchElem[0].style.opacity = '1';
+            }
+
             updateMarkerPosition(event);
         }
     });
 
     if (locationMarkerposition === null && markerPosition === null) return null;
+
     if (locationMarkerposition !== null) return (<Marker position={locationMarkerposition} draggable>
         <Popup>You are here</Popup>
     </Marker>);
@@ -74,13 +136,14 @@ export default function MapLocationSelectorModal({ isOpen, onToggle }: IProps) {
                     <TextField id="outlined-basic" label="Enter Full Address" variant="outlined"
                         fullWidth
                     />
-                    <div className="location-map" style={{ width: '100%', height: '250px' }}>
+                    <div className="location-map" style={{ width: '100%', height: '350px' }}>
                         {markerPosition !== null ? <MapContainer center={markerPosition as LatLngExpression} zoom={13} scrollWheelZoom={true} style={{ width: '100%', height: '100%' }}>
                             <TileLayer
                                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
                             <LocationMarker markerPosition={markerPosition} />
+                            <RestaurantFinder />
                         </MapContainer> : null}
                     </div>
                 </Dialog.Content>

@@ -1,0 +1,38 @@
+@import "./../../../style/variables";
+
+.weave-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background-color: $primary-color;
+    animation: weave 1.5s ease-in-out infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes weave {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
