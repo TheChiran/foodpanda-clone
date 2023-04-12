@@ -26,3 +26,8 @@ export interface IOpenStreetAPIQuery {
     email?: string;
     useragent?: string;
 }
+
+export interface IOpenStreetAPIQueryWithLatLng {
+    lat: string;
+    lng: string;
+}

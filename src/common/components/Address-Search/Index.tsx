@@ -6,6 +6,7 @@ import openStreetService from "../../../services/open-street.service";
 import IOpenStreetData from "../../../types/openStreet.type";
 import { motion, AnimatePresence } from "framer-motion";
 import MapLocationSelectorModal from "../MapLocationSelectorModal/Index";
+import SearchTypingLoader from "../SearchTypingLoader/Index";
 
 interface AddressSearchProps {
     enableExpedition?: boolean;
@@ -19,10 +20,19 @@ export default function AddressSearch({ enableExpedition = false, onSearchClick 
     const [searchString, setSearchString] = useState("");
     const [searchResults, setSearchResults] = useState<IOpenStreetData[]>([]);
     const [mapLocationDialogOpened, setMapLocationDialogOpened] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const toggleMapLocationDialog = (event: MouseEvent) => {
+    const toggleMapLocationDialog = async (event: MouseEvent) => {
         event.preventDefault();
-        setMapLocationDialogOpened(!mapLocationDialogOpened);
+        if (searchString !== "") {
+            setMapLocationDialogOpened(!mapLocationDialogOpened);
+            return;
+        }
+        triggerLocationAutoSearch();
+    };
+
+    const triggerLocationAutoSearch = () => {
+        handleAutoLocationSelection(() => setMapLocationDialogOpened(!mapLocationDialogOpened));
     };
 
     const canSearchLocation = () => {
@@ -30,7 +40,9 @@ export default function AddressSearch({ enableExpedition = false, onSearchClick 
         return true;
     };
 
-    const handleLocationSearch = async () => {
+    const handleLocationSearch = async (event: any) => {
+        setSearchString(event.target.value);
+
         if (throttling.current) return;
 
         if (!canSearchLocation()) {
@@ -44,6 +56,8 @@ export default function AddressSearch({ enableExpedition = false, onSearchClick 
 
         setTimeout(async () => {
             throttling.current = false;
+            setSearchString(event.target.value);
+            setIsLoading(true);
             try {
                 const response = await openStreetService.search({
                     q: (searchInputRef.current as HTMLInputElement).value, limit: 100,
@@ -54,25 +68,53 @@ export default function AddressSearch({ enableExpedition = false, onSearchClick 
                     polygon_geojson: 0
                 });
                 setSearchResults(response.data as IOpenStreetData[]);
+                setIsLoading(false);
             } catch (error) {
                 console.log('error occured');
+                setIsLoading(false);
             }
         }, 1000);
+    };
+
+    const handleAutoLocationSelection = (callBack: any = () => { }) => {
+        if (navigator.geolocation) {
+            setIsLoading(true);
+            navigator.geolocation.getCurrentPosition(async (position: any) => {
+                const { latitude, longitude } = position.coords;
+                const response = await openStreetService.searchWithLatLng({ lat: latitude, lng: longitude });
+                setSearchString(response.data.display_name);
+                searchInputRef?.current?.click();
+                setIsLoading(false);
+                if (typeof callBack === 'function') {
+                    setTimeout(() => {
+                        callBack();
+                    }, 500);
+                }
+            }, (error) => {
+                alert('Could not get location automatically!');
+                setIsLoading(false);
+            });
+        } else {
+            alert("Sorry! Your browser dosen't support geolocation API!");
+            setIsLoading(false);
+        }
     };
 
     return (
         <div className="address-search">
             <TextField id="outlined-basic" label="Enter Full Address" variant="outlined"
                 inputRef={searchInputRef}
-                onChange={handleLocationSearch}
+                value={searchString}
+                onChange={(event) => handleLocationSearch(event)}
                 fullWidth
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
-                            <span className="material-icons">
-                                gps_fixed
-                            </span>
-                        </InputAdornment>
+                        isLoading ? <SearchTypingLoader /> :
+                            <InputAdornment position="end" onClick={handleAutoLocationSelection}>
+                                <span className="material-icons">
+                                    gps_fixed
+                                </span>
+                            </InputAdornment>
                     )
                 }}
             />
