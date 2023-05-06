@@ -50,3 +50,32 @@
         }
     }
 }
+
+.DialogContent{
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+
+    .title-section{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .title{
+            font-size: 24px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .close-btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            
+            .material-icons{
+                color: $primary-color;
+            }
+        }
+    }
+}
