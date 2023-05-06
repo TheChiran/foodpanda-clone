@@ -11,6 +11,8 @@ import React from 'react';
 interface IProps {
     isOpen: boolean;
     onToggle: MouseEventHandler;
+    fullAddress?: string;
+    onValueChange: (event: any)=>{};
 };
 
 interface CustomButtonProps {
@@ -102,7 +104,7 @@ function LocationMarker({ markerPosition }: any) {
     </Marker>);
 };
 
-export default function MapLocationSelectorModal({ isOpen, onToggle }: IProps) {
+export default function MapLocationSelectorModal({ isOpen, onToggle,fullAddress="",onValueChange }: IProps) {
     const [markerPosition, setMarkerPosition] = useState<LatLngExpression | null>(null);
 
     useEffect(() => {
@@ -134,6 +136,8 @@ export default function MapLocationSelectorModal({ isOpen, onToggle }: IProps) {
                         </div>
                     </div>
                     <TextField id="outlined-basic" label="Enter Full Address" variant="outlined"
+                        value={fullAddress}
+                        onChange={onValueChange}
                         fullWidth
                     />
                     <div className="location-map" style={{ width: '100%', height: '350px' }}>
