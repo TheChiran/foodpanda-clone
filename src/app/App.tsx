@@ -1,5 +1,5 @@
-import Header from '../common/components/Header/Index';
-import './../style/app.scss';
+import Header from "../common/components/Header/Index";
+import "./../style/app.scss";
 import { Outlet } from "react-router-dom";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <Header />
       <Outlet />
     </div>
-  )
+  );
 }
 
 export default App;
