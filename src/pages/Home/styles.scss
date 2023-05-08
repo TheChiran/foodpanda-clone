@@ -1,5 +1,14 @@
+.home-section{
+    margin-top: 128px;
 
-@media(min-width: 1440px){
+    .city-container{
+        .city-list{
+            display: none;
+        }
+    }
+}
+
+@media(min-width: 991px){
     .home-section{
         .city-container{
             .city-list{
@@ -8,6 +17,20 @@
                 column-gap: 20px;
                 row-gap: 20px;
                 flex-wrap: wrap;
+            }
+
+            .city-list-mbl{
+                display: none;
+            }
+        }
+    }
+}
+
+@media(min-width: 1440px){
+    .home-section{
+        .city-container{
+            .city-list{
+                
             }
         }
     }
