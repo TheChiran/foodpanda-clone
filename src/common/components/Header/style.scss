@@ -3,8 +3,11 @@
 @import "./../../../style/common";
 
 nav {
+    width: calc(100% - 24px);
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-    position: sticky;
+    position: fixed;
+    z-index: 999;
+    background: #FFFFFF;
     top: 0;
     display: grid;
     grid-template-columns: repeat(12,8.33%);
