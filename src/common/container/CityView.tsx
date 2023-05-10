@@ -96,6 +96,7 @@ function CityView() {
 
   return (
     <React.Fragment>
+      <h2 className="cities-overlay">Cities</h2>
       <Grid item lg={12} md={12} xs={12}>
         <h2 className="city-title">Find us in these cities and many more!</h2>
       </Grid>
