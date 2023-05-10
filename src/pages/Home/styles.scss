@@ -1,7 +1,12 @@
 .home-section{
-    margin-top: 128px;
+    margin-top: calc(128px + 50px);
+    position: relative;
 
     .city-container{
+        display: flex;
+        row-gap: 10px;
+        flex-direction: column;
+
         .city-list{
             display: none;
         }
@@ -10,7 +15,11 @@
 
 @media(min-width: 991px){
     .home-section{
+        margin-top: 128px;
+
         .city-container{
+            row-gap: 20px;
+
             .city-list{
                 width: 100%;
                 display: flex;

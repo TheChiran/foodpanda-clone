@@ -63,6 +63,12 @@
     }
 }
 
+@media(min-width: 1280px){
+    .city{
+        width: calc(25% - 20px);
+    }
+}
+
 @media(min-width: 1440px){
     .city{
         width: calc(20% - 20px);
