@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
+    "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -39,6 +41,13 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.3",
+    "@storybook/addon-essentials": "^7.0.10",
+    "@storybook/addon-interactions": "^7.0.10",
+    "@storybook/addon-links": "^7.0.10",
+    "@storybook/blocks": "^7.0.10",
+    "@storybook/react": "^7.0.10",
+    "@storybook/react-vite": "^7.0.10",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/leaflet": "^1.9.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -55,6 +64,8 @@
     "lint-staged": "^13.2.0",
     "precise-commits": "^1.0.2",
     "prettier": "^2.8.7",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.10",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
   }
