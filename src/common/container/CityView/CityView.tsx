@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Grid } from "@mui/material";
-import City from "../components/City/Index";
+import City from "./components/City/Index";
 import "./styles.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 

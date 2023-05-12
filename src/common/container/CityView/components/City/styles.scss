@@ -53,6 +53,7 @@
             color: #FFF;
             border-radius: 5px;
             opacity: 1;
+            outline: unset;
         }
     }
 }
@@ -60,6 +61,10 @@
 @media(min-width: 991px){
     .city{
         width: calc(32.9% - 10px);
+
+        .city-wrapper{
+            max-width: 300px;
+        }
     }
 }
 

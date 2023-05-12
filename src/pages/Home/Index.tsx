@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import "./styles.scss";
-import CityView from "../../common/container/CityView";
+import CityView from "../../common/container/CityView/CityView";
 
 export default function Home() {
   return (
