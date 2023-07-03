@@ -1,0 +1,50 @@
+@import "./../../../style/variables";
+
+// Mobile view -> starts from 320px
+.location-search {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin-bottom: 50px;
+    
+    .contents { 
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        .title {
+            margin: 0;
+            font-size: 32px;
+            line-height: 40px;
+            font-family: 'Sans-serif';
+            color: #333;
+            width: 90%;
+        }
+
+        .address-search {
+            .select-expedition {
+                width: 100%;
+
+                button {
+                    width: 50%;
+                }
+            }
+        }
+    }
+
+    @media(min-width: 991px) {
+        margin-top: 150px;
+
+        .contents {
+            row-gap: 30px;
+
+            .address-search {
+                background: #FFF;
+                padding: 10px;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px; 
+                flex-direction: row;
+                column-gap: 10px;
+            }
+        }
+    }
+}

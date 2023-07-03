@@ -6,6 +6,7 @@
         display: flex;
         row-gap: 10px;
         flex-direction: column;
+        position: relative;
 
         .city-list{
             display: none;
