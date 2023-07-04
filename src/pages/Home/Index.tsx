@@ -2,6 +2,7 @@ import { Container, Grid } from "@mui/material";
 import "./styles.scss";
 import CityView from "../../common/container/CityView/CityView";
 import LocationSearch from "../../common/container/LocationSearch/Index";
+import RestaurantPartnerRegister from "../../common/container/RestaurantPartnerRegister/Index";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Container maxWidth="lg" className="city-container">
         <CityView />
       </Container>
+      <RestaurantPartnerRegister/>
     </section>
   );
 }
