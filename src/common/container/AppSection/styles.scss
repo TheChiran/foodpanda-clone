@@ -1,0 +1,102 @@
+@import "./../../../style/variables";
+
+.app-section{
+    margin-top: 50px;
+    position: relative;
+    padding: 20px 0;
+
+    .title {
+        position: relative;
+    }
+
+    .app-section-container-parent {
+        background: $primary-color;
+        margin-top: 20px;
+
+        .app-download-links {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+    
+            a {
+                width: 150px;
+    
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    
+    .app-section-contents-container {
+        display: flex;
+        flex-direction: column-reverse;
+        row-gap: 10px;
+        justify-content: center;
+        position: relative;
+    }
+
+    &__contents {
+        padding: 50px 0 20px 0;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        .title {
+            font-size: 28px;
+            margin: 0;
+            line-height: 20px;
+            color: #FFF;
+        }
+
+        .description {
+            font-size: 18px;
+            text-align: justify;
+            line-height: 16px;
+            color: #FFF;
+        }
+    }
+
+    &__image-wrapper {
+        width: 100%;
+        position: relative;
+        min-height: fit-content;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    @media(min-width: 500px) {
+        &__image-wrapper {
+            min-height: fit-content;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 400px;
+                height: 300px;
+            }
+        }
+    }
+
+    @media(min-width: 991px) {
+        .app-section-contents-container {
+            flex-direction: row;
+            column-gap: 10px;
+        }
+
+        &__contents {
+            padding: 100px 0 50px 0;
+            width: calc(50% - 10px);
+        }
+
+        &__image-wrapper {
+            width: calc(50% - 10px);
+            align-items: center;
+        }
+    }
+}
