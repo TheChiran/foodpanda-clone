@@ -1,0 +1,62 @@
+@import "./../../../style/_variables.scss";
+
+.order-food {
+    padding: 20px 0;
+    margin-bottom: 50px;
+
+    .MuiContainer-root {
+        border-bottom: 1px solid #0000000c;
+        padding-bottom: 40px;
+    }
+
+    &__contents {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
+        .title {
+            font-size: 20px;
+            margin: 0;
+            line-height: 18px;
+        }
+
+        .description {
+            margin: 0;
+            font-size: 18px;
+            color: #000;
+            font-weight: 400;
+            text-align: justify;
+            line-height: 24px;
+        }
+
+        .read-more-contents {
+            .MuiPaper-root {
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+                .MuiAccordionDetails-root {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 10px;
+                }
+            }
+        }
+    }
+
+    @media(min-width: 991px) {
+        padding: 50px 0;
+        margin-bottom: 100px;
+
+        &__contents {
+            row-gap: 20px;
+
+            .read-more-contents {
+                .MuiPaper-root {
+    
+                    .MuiAccordionDetails-root {
+                        row-gap: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

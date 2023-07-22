@@ -4,6 +4,7 @@ import CityView from "../../common/container/CityView/CityView";
 import LocationSearch from "../../common/container/LocationSearch/Index";
 import RestaurantPartnerRegister from "../../common/container/RestaurantPartnerRegister/Index";
 import AppSection from "../../common/container/AppSection/Index";
+import OrderFood from "../../common/container/OrderFood/Index";
 
 export default function Home() {
   return (
@@ -32,6 +33,8 @@ export default function Home() {
         contentDescription="Order lunch or fuel for work-from-home, late nights in the office, corporate events, client meetings, and much more."
         imgUrl="https://images.deliveryhero.io/image/foodpanda/home-corporate-bd.jpg?width=1400&height=896"
       />
+
+      <OrderFood />
     </section>
   );
 }
