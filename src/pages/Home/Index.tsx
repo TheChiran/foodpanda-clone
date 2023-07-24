@@ -5,6 +5,7 @@ import LocationSearch from "../../common/container/LocationSearch/Index";
 import RestaurantPartnerRegister from "../../common/container/RestaurantPartnerRegister/Index";
 import AppSection from "../../common/container/AppSection/Index";
 import OrderFood from "../../common/container/OrderFood/Index";
+import Footer from "../../common/components/Footer/Index";
 
 export default function Home() {
   return (
@@ -35,6 +36,8 @@ export default function Home() {
       />
 
       <OrderFood />
+
+      <Footer />
     </section>
   );
 }
