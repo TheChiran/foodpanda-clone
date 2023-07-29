@@ -18,31 +18,31 @@ const city_list: City[] = [
   {
     id: 1,
     name: "Dhaka",
-    url: "dhaka"
+    url: "dhaka",
   },
   {
     id: 2,
-    name: "Rajshahi"
+    name: "Rajshahi",
   },
   {
     id: 3,
-    name: "Pabna"
+    name: "Pabna",
   },
   {
     id: 4,
     name: "Khulna",
-    url: "khulna"
+    url: "khulna",
   },
   {
     id: 5,
     name: "Sylhet",
-    url: "sylhet"
+    url: "sylhet",
   },
   {
     id: 6,
     name: "Mymensingh",
-    url: "mymensingh"
-  }
+    url: "mymensingh",
+  },
 ];
 
 function renderCityList(swiperEnabled = false) {
@@ -96,10 +96,10 @@ function CityView() {
 
   return (
     <React.Fragment>
-      <h2 className="cities-overlay">Cities</h2>
-      <Grid item lg={12} md={12} xs={12}>
-        <h2 className="city-title">Find us in these cities and many more!</h2>
-      </Grid>
+      <div className="title">
+        <h2 className="title-overlay">Cities</h2>
+        <h2 className="global-title">Find us in these cities and many more!</h2>
+      </div>
       <Grid item lg={12} md={12} xs={12}>
         <div className="city-list">{renderCityList()}</div>
         <div className="city-list-mbl">

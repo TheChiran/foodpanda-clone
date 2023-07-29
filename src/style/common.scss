@@ -7,6 +7,7 @@
 .title-overlay {
     position: absolute;
     font-size: 80px;
+    font-weight: 500;
     top: -28px;
     z-index: -2;
     color: rgba(0, 0, 0, 0.0784313725);
@@ -14,7 +15,7 @@
 
 .global-title {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 500;
     line-height: 26px;
 
     @media(min-width: 991px) {
