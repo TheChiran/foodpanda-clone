@@ -33,19 +33,19 @@ export default function RestaurantPartnerRegister({
       <div
         className="banner-wrapper"
         style={{ background: `url("${imgUrl}")` }}
-      ></div>
-
-      <Container maxWidth="lg">
-        <div className="get-started-section">
-          <h2 className="title">{contentTitle}</h2>
-          <div className="content">
-            <p> {contentDescription}</p>
+      >
+        <Container maxWidth="lg">
+          <div className="get-started-section">
+            <h2 className="title">{contentTitle}</h2>
+            <div className="content">
+              <p> {contentDescription}</p>
+            </div>
+            <div className="button-section">
+              <button>Get Started</button>
+            </div>
           </div>
-          <div className="button-section">
-            <button>Get Started</button>
-          </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 }
